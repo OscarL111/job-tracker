@@ -8,7 +8,7 @@
   // Create an OAuth 2.0 Client ID (Web application) in Google Cloud Console
   // and paste it here. Add your app's URL as an Authorized JavaScript origin.
   const DRIVE_CONFIG = {
-    CLIENT_ID: "YOUR_CLIENT_ID.apps.googleusercontent.com",
+    CLIENT_ID: "1024891338955-pttcu3ojndn5g4oda21lm9bdodjje9s0.apps.googleusercontent.com",
     SCOPE: "https://www.googleapis.com/auth/drive.file",
     FILE_NAME: "job-tracker-data.json",
   };
