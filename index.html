@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Job Application Tracker</title>
+<link rel="stylesheet" href="styles.css" />
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <h1>Job Application Tracker</h1>
+      <div class="topbar-actions">
+        <span id="syncStatus" class="sync-status"></span>
+        <button id="driveSignInBtn" class="btn btn-ghost">Sign in with Google</button>
+        <button id="exportBtn" class="btn btn-ghost" title="Save your data to a JSON file">Export</button>
+        <button id="importBtn" class="btn btn-ghost" title="Load data from a JSON file">Import</button>
+        <input type="file" id="importFile" accept="application/json" hidden />
+        <button id="addBtn" class="btn btn-primary">+ New Application</button>
+      </div>
+    </header>
+
+    <section class="stats" id="stats"></section>
+
+    <section class="controls">
+      <input type="search" id="searchInput" placeholder="Search company or position…" />
+      <div class="filter-chips" id="stageFilters"></div>
+      <select id="sortSelect">
+        <option value="dateDesc">Newest first</option>
+        <option value="dateAsc">Oldest first</option>
+        <option value="company">Company (A–Z)</option>
+        <option value="stage">Stage</option>
+      </select>
+    </section>
+
+    <main>
+      <div id="emptyState" class="empty-state hidden">
+        <p>No applications yet.</p>
+        <button class="btn btn-primary" id="emptyAddBtn">Add your first application</button>
+      </div>
+      <div id="cardGrid" class="card-grid"></div>
+    </main>
+  </div>
+
+  <!-- Add/Edit Modal -->
+  <dialog id="appModal">
+    <form id="appForm" method="dialog">
+      <h2 id="modalTitle">New Application</h2>
+      <input type="hidden" id="appId" />
+
+      <div class="form-grid">
+        <label>
+          Company *
+          <input type="text" id="company" required />
+        </label>
+        <label>
+          Position *
+          <input type="text" id="position" required />
+        </label>
+        <label>
+          Date Submitted *
+          <input type="date" id="dateApplied" required />
+        </label>
+        <label>
+          Stage
+          <select id="stage"></select>
+        </label>
+        <label>
+          Location
+          <input type="text" id="location" placeholder="e.g. Remote, Austin TX" />
+        </label>
+        <label>
+          Job Posting URL
+          <input type="url" id="url" placeholder="https://…" />
+        </label>
+        <label>
+          Source
+          <input type="text" id="source" placeholder="e.g. Referral, LinkedIn, Handshake" />
+        </label>
+        <label>
+          Salary / Pay Range
+          <input type="text" id="salary" placeholder="e.g. $80k–$95k" />
+        </label>
+        <label>
+          Contact Person
+          <input type="text" id="contact" placeholder="Recruiter / referrer name" />
+        </label>
+        <label>
+          Next Follow-up Date
+          <input type="date" id="followUpDate" />
+        </label>
+      </div>
+
+      <label class="full-width">
+        Notes
+        <textarea id="notes" rows="3" placeholder="Interview details, questions asked, impressions…"></textarea>
+      </label>
+
+      <div class="modal-actions">
+        <button type="button" id="deleteBtn" class="btn btn-danger hidden">Delete</button>
+        <div class="spacer"></div>
+        <button type="button" id="cancelBtn" class="btn btn-ghost">Cancel</button>
+        <button type="submit" id="saveBtn" class="btn btn-primary">Save</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="app.js"></script>
+</body>
+</html>
